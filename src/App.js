@@ -1,4 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -27,7 +28,12 @@ const App = () => {
   // expenses = object, [0] first element in the array, .title is dot notation grabbing the title key/value
 
   // pass the array expenses by items prop
-  return <Expenses items={expenses} />;
-}
+  return (
+    <div>
+      <NewExpense items={expenses} />
+      <Expenses items={expenses} />
+    </div>
+  );
+};
 
 export default App;
