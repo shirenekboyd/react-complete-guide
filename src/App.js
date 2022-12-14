@@ -2,6 +2,7 @@ import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
+  //want to add user inputted expenses to this array with a unique id
   const expenses = [
     {
       id: "e1",
@@ -23,7 +24,7 @@ const App = () => {
       date: new Date("2021-5-12"),
     },
   ];
-
+// user data being passed up from child components, added here
   const addExpenseHandler = expense => {
     console.log("In App.js");
     console.log(expense);
