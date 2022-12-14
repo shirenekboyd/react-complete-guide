@@ -24,13 +24,18 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler = expense => {
+    console.log("In App.js");
+    console.log(expense);
+  }
+
   // Add attributes (ie title) to the ExpenseItem component in order to pass "props"
   // expenses = object, [0] first element in the array, .title is dot notation grabbing the title key/value
 
   // pass the array expenses by items prop
   return (
     <div>
-      <NewExpense items={expenses} />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
   );
