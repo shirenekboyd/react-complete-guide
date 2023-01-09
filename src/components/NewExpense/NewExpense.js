@@ -11,7 +11,7 @@ const NewExpense = (props) => {
     };
     console.log(expenseData);
     // calling or executing onAddExpense prop and forward the updated expenseData to App.js
-    props.onAddExpense(expenseData)
+    props.onAddExpense(expenseData)//passing data through the function, lifts state up
   };
   return (
     <div className="new-expense">
