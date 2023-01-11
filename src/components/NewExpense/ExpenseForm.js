@@ -37,29 +37,33 @@ const ExpenseForm = (props) => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault();//prevents the page from reloading/re-rendering
+    event.preventDefault(); //prevents the page from reloading/re-rendering
 
     // expense data object upon submission
     //new Date parses and reconfigures the date in a certain format
     const expenseDate = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: new Date(enteredDate)
-    }
+      date: new Date(enteredDate),
+    };
     // console.log(expenseDate)
     // call and execute the onSaveExpenseData() and pass in the new user inputs as an argument
     props.onSaveExpenseData(expenseDate);
-    setEnteredTitle('')
-    setEnteredAmount('')
-    setEnteredDate('')
-  }
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+  };
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -83,6 +87,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="submit" onClick={props.onCancel}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
