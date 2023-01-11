@@ -18,6 +18,20 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === filteredYear; //if truthy render only items with that selected year else don't
   });
 
+  //stored jsx content inside a variable
+  let expensesContent = <p>No expenses found.</p>;
+  //checking for an empty list
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id} //each item has a unique id, see dummy expenses in App.js
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   return (
     <div>
       <Card className="expenses">
@@ -25,15 +39,7 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {/* mapping the filtered list not original list */}
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id} //each item has a unique id, see dummy expenses in App.js
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {expensesContent}
       </Card>
     </div>
   );
