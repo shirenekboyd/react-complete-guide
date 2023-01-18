@@ -41,14 +41,14 @@ const ExpenseForm = (props) => {
 
     // expense data object upon submission
     //new Date parses and reconfigures the date in a certain format
-    const expenseDate = {
+    const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
     // console.log(expenseDate)
     // call and execute the onSaveExpenseData() and pass in the new user inputs as an argument
-    props.onSaveExpenseData(expenseDate);
+    props.onSaveExpenseData(expenseData);
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
