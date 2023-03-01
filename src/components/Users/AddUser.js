@@ -1,22 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
-import classes from './AddUser.module.css';
+import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
-const addUserHandler = (event) => {
-event.preventDefault();
-}
+  const [enteredUsername, setEnteredUsername] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
+
+  const addUserHandler = (event) => {
+    event.preventDefault();
+    //validation
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0){
+      return;
+    }
+    // '+' prefix ensures you are comparing a number with a number not a string
+    if (+enteredAge < 1){
+      return;
+    }
+    console.log("Inputs: ", enteredUsername, enteredAge);
+    //reseting the input field along with 'value' props with inputs in JSX reflecting the stored state
+    setEnteredUsername("");
+    setEnteredAge("");
+  };
+
+  const usernameChangeHandler = (event) => {
+    setEnteredUsername(event.target.value);
+  };
+
+  const ageChangeHandler = (event) => {
+    setEnteredAge(event.target.value);
+  };
 
   return (
     <Card className={classes.input}>
-    <form onSubmit={addUserHandler}>
-      <label htmlFor="username">Username</label>
-      <input id="username" type="text"></input>
-      <label htmlFor="age">Age (Years)</label>
-      <input id="age" type="number"></input>
-      <Button type="submit">Add User</Button>
-    </form>
+      <form onSubmit={addUserHandler}>
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={enteredUsername}
+          onChange={usernameChangeHandler}
+        ></input>
+        <label htmlFor="age">Age (Years)</label>
+        <input
+          id="age"
+          type="number"
+          value={enteredAge}
+          onChange={ageChangeHandler}
+        ></input>
+        <Button type="submit">Add User</Button>
+      </form>
     </Card>
   );
 };
